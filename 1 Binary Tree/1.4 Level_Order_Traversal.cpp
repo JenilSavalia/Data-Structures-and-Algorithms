@@ -1,0 +1,74 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val)
+    {
+        data = val;
+        left = right = NULL;
+    }
+};
+
+// Bullding a binary tree with help of Pre-Ordered Sequence
+
+// Recursive Function to Build Preorder Binaryy Tree
+static int idx = -1;
+Node *buildTree(vector<int> preorder)
+{
+    idx++;
+
+    if (preorder[idx] == -1)
+    {
+        return NULL;
+    }
+
+    Node *root = new Node(preorder[idx]);
+    root->left = buildTree(preorder);  // LEFT
+    root->right = buildTree(preorder); // RIGHT
+
+    return root;
+}
+
+// Levell Order Traversal -> Level by Level (BFS)
+// Time Complexity: O(n)
+
+void LevelOrder(Node *root)
+{
+    queue<Node *> q;
+    q.push(root);
+
+    while (q.size() > 0)
+    {
+        Node *curr = q.front();
+        q.pop();
+
+        if (curr == NULL) continue; // Skip null nodes
+
+        cout << curr->data << endl;
+        if (root != NULL)
+        {
+            q.push(curr->left);
+        }
+        if (root != NULL)
+        {
+            q.push(curr->right);
+        }
+    }
+}
+
+int main()
+{
+    vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
+
+    Node *root = buildTree(preorder);
+    LevelOrder(root);
+    return 0;
+}
