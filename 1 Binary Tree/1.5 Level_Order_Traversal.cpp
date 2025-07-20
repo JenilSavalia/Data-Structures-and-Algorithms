@@ -50,14 +50,13 @@ void LevelOrder(Node *root)
         Node *curr = q.front();
         q.pop();
 
-        if (curr == NULL) continue; // Skip null nodes
 
         cout << curr->data << endl;
-        if (root != NULL)
+        if (curr->left != NULL)
         {
             q.push(curr->left);
         }
-        if (root != NULL)
+        if (curr->right != NULL)
         {
             q.push(curr->right);
         }
