@@ -93,16 +93,83 @@ public:
             tail = newNode;
         }
     }
+
+    void pop_front()
+    {
+        if (head == NULL)
+            return;
+        Node *front = head;
+        head = front->next;
+        front->next = NULL;
+
+        delete front;
+    }
+
+    void pop_back()
+    {
+        // when there's only one node, then penultimate->next will be NULL, and NULL->next causes a crash., so this would avoi that
+        if (head == tail)
+        {
+            delete head;
+            head = tail = NULL;
+            return;
+        }
+
+        if (head == NULL)
+            return;
+        Node *penultimate = head;
+        while (penultimate->next->next != NULL) // this will stop at second last node
+        {
+            // we will stop at second last node
+            // so that we can delete last node
+            // and update penultimate's next to NULL
+
+            penultimate = penultimate->next;
+        }
+        Node *lastNode = penultimate->next;
+        penultimate->next = NULL;
+        delete lastNode;
+        tail = penultimate;
+
+        // in above while loop, if we have a tail pointer, we can use condition as while (penultimate->next == tail) ,
+        // and store last second nodes data in temp pointer
+    };
+
+    void insert_node(int value, int position)
+    {
+        if (position < 0)
+            return;
+        if (position == 0)
+        {
+            push_front(value);
+            return;
+        }
+        Node *newNode = new Node(value);
+        Node *temp = head;
+        int count = 0;
+        while (count != position - 1)
+        {
+            temp = temp->next;
+            count++;
+        }
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
 };
 
 int main()
 {
 
     List ll;
-    ll.push_front(10);
-    ll.push_front(20);
-    ll.push_front(30);
-    ll.push_back(96);
+    ll.push_front(3);
+    ll.push_front(2);
+    ll.push_front(1);
+    ll.push_front(4);
+    ll.push_front(5);
+
+    // ll.push_back(96);
+    // ll.pop_back();
+    // ll.insert_node(6565,3);
     ll.print_ll();
 
     return 0;
