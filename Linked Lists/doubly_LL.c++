@@ -100,6 +100,31 @@ public:
         temp->prev = NULL;
         delete temp;
     }
+
+    void insert_node(int value, int position)
+    {
+        if (position < 0)
+            return;
+        if (position == 0)
+        {
+            push_front(value);
+            return;
+        }
+
+        Node *temp = head;
+        int index = 0;
+        while (index != position - 1)
+        {
+            temp = temp->next;
+            index++;
+        }
+        Node *newNode = new Node(value);
+        newNode->prev = temp;
+        newNode->next = temp->next;
+
+        temp->next->prev = newNode;
+        temp->next = newNode;
+    }
 };
 
 int main()
@@ -111,6 +136,7 @@ int main()
     dll.push_front(2);
     dll.push_front(1);
     dll.push_back(4);
-    dll.pop_back();
+    dll.insert_node(6, 0);
+    // dll.pop_back();
     dll.print();
 }
