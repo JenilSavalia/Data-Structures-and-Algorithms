@@ -70,11 +70,35 @@ public:
 
     void pop_front()
     {
-        Node *temp = head;       // taking copy of head
-        temp->next->prev = NULL; // making prev value of second node "NULL"
-        head = temp->next;       // shifting head to second node
-        temp->next = NULL;       // making next value of front node "NULL"
-        delete temp;             // deleting temp/front node
+        if (head == NULL)
+            return;
+        Node *temp = head; // taking copy of head
+        head = head->next; // shifting head's position to second node
+
+        if (head != NULL)
+        {
+            head->prev = NULL; // making prev value of second node "NULL"
+        }
+
+        temp->next = NULL; // making next value of front node "NULL"
+        delete temp;       // deleting temp/front node
+    }
+
+    void pop_back()
+    {
+        if (head == NULL)
+            return;
+
+        Node *temp = tail;
+        tail = tail->prev;
+
+        if (head != NULL)
+        {
+            tail->next = NULL;
+        }
+
+        temp->prev = NULL;
+        delete temp;
     }
 };
 
@@ -87,7 +111,6 @@ int main()
     dll.push_front(2);
     dll.push_front(1);
     dll.push_back(4);
-    dll.pop_front();
-    dll.pop_front();
+    dll.pop_back();
     dll.print();
 }
