@@ -90,7 +90,7 @@ public:
         {
             Node *prev = head;
             Node *temp = tail;
-            while (temp->next != tail)
+            while (prev->next != tail)
             { // or temp->next!=tail
                 prev = prev->next;
             }
@@ -124,5 +124,6 @@ int main()
     cll.insert_at_head(2);
     cll.insert_at_head(3);
     cll.delete_at_tail();
+
     cll.print();
 }
