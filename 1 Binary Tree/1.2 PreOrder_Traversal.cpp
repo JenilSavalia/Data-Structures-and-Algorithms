@@ -49,6 +49,14 @@ Node* buildTree(vector<int> preorder){
      preOrder(root->left);
      preOrder(root->right);
  }
+
+
+         1
+        / \
+       2   3
+          / \
+         4   5
+
  
 
 int main() {
