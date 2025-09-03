@@ -63,6 +63,13 @@ void LevelOrder(Node *root)
     }
 }
 
+         1
+        / \
+       2   3
+          / \
+         4   5
+
+
 int main()
 {
     vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
