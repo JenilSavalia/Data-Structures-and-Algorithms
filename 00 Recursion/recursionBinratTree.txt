@@ -1,0 +1,40 @@
+Node *buildTree(vector<int> preorder)
+{
+    idx++;
+
+    if (preorder[idx] == -1)
+    {
+        return NULL; // Return control here when -1 is encountered
+    }
+
+    Node *root = new Node(preorder[idx]);
+    root->left = buildTree(preorder);  // Left subtree
+    root->right = buildTree(preorder); // Right subtree
+
+    return root;  // Return control here when the subtree is fully built
+}
+
+
+Let's focus on the returning mechanism and how control flows when a frame pops out of the call stack. This is a critical concept in understanding how recursion works.
+
+Key Points:
+
+A function call pushes a new frame onto the stack.
+
+When a function completes, it returns a value (or NULL in the case of the base case), and the frame for that function is popped off the stack.
+
+The control of the program moves back to the function that made the recursive call.
+
+In Simple Terms:
+
+Stack Entry (Call): When you call a function, a new frame is added to the call stack, storing the state of that function (its local variables, return address, etc.).
+
+Stack Exit (Return): When the function finishes executing, it returns a value (or NULL for base cases) and the frame is popped off the call stack.
+
+The control moves back to the previous function in the call stack, specifically to the point where the function was called.
+
+
+
+--------------------------------------------------------------
+
+

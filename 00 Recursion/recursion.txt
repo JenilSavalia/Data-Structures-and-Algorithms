@@ -1,0 +1,96 @@
+
+
+// To understand recursion take analogy of a guy standing in atm line,
+
+// what is least amount of work i can do, how can i break this problem in sub problem
+// and second thing is when would process complete (base case)
+
+The Call Stack:
+
+The call stack is a data structure that keeps track of function calls in a program. Each time a function is called, a new "stack frame" is created on the call stack. 
+This frame contains information like the function's local variables, the return address (i.e., where to continue after the function call completes), and other state information.
+
+What happens when a function returns?
+
+Function Call: When you call a function, an entry (a stack frame) is pushed onto the call stack. This entry contains information about the function call.
+
+Function Execution: The function executes its code. It might call other functions, which causes further stack entries to be added.
+
+Function Return: When the function finishes executing and hits a return statement (or finishes naturally), the return value (if any) is passed back to the calling function,
+ and the stack frame for the current function is popped off the call stack. This means the function has completed, and control is passed back to the point where the function was called (the return address).
+
+
+
+
+ void recursive(int n) {
+    if (n <= 0)
+        return;
+    else {
+        std::cout << n << std::endl;
+        recursive(n - 1); // Recursive call
+    }
+}
+
+
+If you call recursive(3), the call stack will look something like this:
+
+Step-by-Step Call Stack:
+
+Call recursive(3):
+
+Call stack: [recursive(3)]
+
+Executes and calls recursive(2)
+
+Call recursive(2):
+
+Call stack: [recursive(3), recursive(2)]
+
+Executes and calls recursive(1)
+
+Call recursive(1):
+
+Call stack: [recursive(3), recursive(2), recursive(1)]
+
+Executes and calls recursive(0)
+
+Call recursive(0):
+
+Call stack: [recursive(3), recursive(2), recursive(1), recursive(0)]
+
+The if (n <= 0) condition is true, so it returns immediately.
+
+At this point, the function recursive(0) completes, and its stack frame is popped.
+
+After Returning:
+
+Return from recursive(0):
+
+Call stack: [recursive(3), recursive(2), recursive(1)]
+
+Return from recursive(1):
+
+Call stack: [recursive(3), recursive(2)]
+
+Return from recursive(2):
+
+Call stack: [recursive(3)]
+
+Return from recursive(3):
+
+Call stack: [] (Empty)
+
+The call stack is now empty, and the program completes.
+
+Key Takeaways:
+
+When a function returns, the corresponding stack frame is popped off the call stack.
+
+The call stack keeps track of function calls, and each return simply removes the entry corresponding to the function that just finished executing.
+
+If you're working with recursion, this is why the call stack grows as the recursion deepens and shrinks as each function call finishes (pops off the stack).
+
+
+// -------------------------------------------------------------------
+
+
