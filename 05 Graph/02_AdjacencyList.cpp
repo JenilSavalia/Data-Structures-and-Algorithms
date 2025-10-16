@@ -9,6 +9,7 @@ class Graph
 {
     int V;
     list<int> *l; // declaring a dynamic array // int arr*;
+    // above steps declares a dynamic array of type list<int> (list of type int)
 
 public:
     Graph(int v)
