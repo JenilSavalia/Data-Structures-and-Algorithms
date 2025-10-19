@@ -79,3 +79,82 @@ int main()
     // }
     cout << len;
 }
+
+// most optimal approach would be using two pointers O(2n) ~~ O(n)
+
+// so to approach this question lets visualise how sub arrays are formed
+// {1,2,3,1,1,1,1,3,3}   k=6
+
+// so what are possible sub arrays
+// {1,2}
+// {1,2,3}
+// {1,2,3,4}
+// {1,2,3,4,1}
+// {1,2,3,4,1,1}
+// {1,2,3,4,1,1,1}
+// {1,2,3,4,1,1,1.....,3}
+
+// above is one set od sub arrays
+
+// next would be
+
+// {2,3}
+// {2,3,1}
+// {2,3,1,1}
+// {2,3,1,1,1}
+
+// and so on and so forth
+
+// thing to note here is
+
+// {1,2}    -> sum of this sub array is 3
+// {1,2,3}   -> 6
+// {1,2,3,4}    ->  sum of this sub array is 10 , which is more then k , so further subarrays would would not meet our k=6,
+//                  so we would not iterate futrher to this below set of sub sets
+// {1,2,3,4,1}
+// {1,2,3,4,1,1}
+// {1,2,3,4,1,1,1}
+// {1,2,3,4,1,1,1.....,3}
+
+// what we would do is we would move to next set of sub seft by moving our left pointer to starting pointer of that sub array
+
+// {1,2,3,1,1,1,1,3,3}
+//  ^     ^
+
+// at this point sum of this sub array is 1+2+3+1 = 7 , which is more then k
+// so we move to next set of sub arrays by moving left pointer such that, element it points is less then or equal to
+// right pointer index and sum of that sub array is less then k.
+
+// lets dive into the code and make sure to dry run it to enhance your learning
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int arr[] = {1, 2, 3, 1, 1, 1, 1, 3, 3};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int k = 6;
+    int left = 0;
+    int right = 0;
+    int maxLen = 0;
+    int sum = arr[0];
+
+    while (right < n)
+    {
+        while (sum > k && left <= right)
+        {
+            sum -= arr[left];
+            left++;
+        }
+        if (sum == k)
+        {
+            maxLen = max(right - left + 1, maxLen);
+        }
+        right++;
+        if (right < n)
+            sum += arr[right];
+    }
+
+    cout << maxLen;
+}
