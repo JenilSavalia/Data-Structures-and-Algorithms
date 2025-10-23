@@ -75,7 +75,7 @@ public:
             if (currentSum < 0)
             {
                 currentSum = 0;
-                L = R + 1; // Move L to the next index after R
+                L = R ; 
             }
         }
 
