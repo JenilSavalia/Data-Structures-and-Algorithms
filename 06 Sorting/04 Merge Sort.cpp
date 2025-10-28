@@ -44,6 +44,12 @@ using namespace std;
 //     return 0;
 // }
 
+
+
+// Time Complexity: O(N*logN), merging two arrays take linear time and array is recursively divided into halves (logN times).
+// Space Complexity: O(N), we use a temporary array to store elements in sorted order.
+
+
 // -----------------------------------------------------
 // Merge two sorted halves: A[l..mid] and A[mid+1..h]
 // -----------------------------------------------------
