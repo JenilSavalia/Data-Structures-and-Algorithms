@@ -55,9 +55,8 @@ public:
 
 
 
-// using two pointers
+// using two pointers (array should be sorted)
 
-// Online C++ compiler to run C++ program online
 #include <iostream>
 using namespace std;
 
