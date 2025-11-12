@@ -2,6 +2,10 @@
 #include <vector>
 using namespace std;
 
+// binary search time complexicity : O(log n)
+
+// Recursive Method
+
 int binarySearch(int l, int r, vector<int> arr, int key)
 {
     if (l > r)
@@ -34,4 +38,28 @@ int main()
 
     cout << binarySearch(l, r, arr, key);
     return 0;
+}
+
+// Iterative Method
+
+int binarySearch(int l, int r, vector<int> arr, int key)
+{
+
+    while (l <= r)
+    {
+        int mid = l + (r - l) / 2; // To prevent potential overflow
+        if (arr[mid] > key)
+        {
+            r = mid - 1;
+        }
+        else if (arr[mid] < key)
+        {
+            l = mid + 1;
+        }
+        else
+        {
+            return mid;
+        }
+    }
+    return -1;
 }
