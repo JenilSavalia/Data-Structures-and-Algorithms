@@ -1,0 +1,6 @@
+Graph Representations
+
+The two most commonly used representations for graphs
+-Adjacency Matrix
+-Adjacency Lists
+

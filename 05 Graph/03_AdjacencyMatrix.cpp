@@ -4,30 +4,30 @@ using namespace std;
 
 class Graph
 {
-    int V;                   // number of vertices
-    vector<vector<int>> adj; // adjacency list
+    int V;                         // number of vertices
+    vector<vector<int>> adjMatrix; // adjacency matrix
 
 public:
     Graph(int v)
     {
         this->V = v;
-        adj.resize(V); // create a vector of V vectors
+        adjMatrix.resize(V, vector<int>(V, 0)); // initialize VxV matrix with 0s
     }
 
     void addEdge(int u, int v)
     {
-        adj[u].push_back(v);
-        adj[v].push_back(u); // for an undirected graph
+        adjMatrix[u][v] = 1;
+        adjMatrix[v][u] = 1; // for undirected graph
     }
 
-    void printAdjList()
+    void printAdjMatrix()
     {
+        cout << "Adjacency Matrix:\n";
         for (int i = 0; i < V; i++)
         {
-            cout << i << " : ";
-            for (int neigh : adj[i])
+            for (int j = 0; j < V; j++)
             {
-                cout << neigh << " ";
+                cout << adjMatrix[i][j] << " ";
             }
             cout << endl;
         }
@@ -44,7 +44,7 @@ int main()
     g.addEdge(2, 3);
     g.addEdge(2, 4);
 
-    g.printAdjList();
+    g.printAdjMatrix();
 
     return 0;
 }
