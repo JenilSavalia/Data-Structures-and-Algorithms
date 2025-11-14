@@ -4,34 +4,69 @@
 
 using namespace std;
 
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+using namespace std;
+
+// using unordered set
+
 int main()
 {
-    int arr[] = {1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 4};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int left = 0;
-    int right = 1;
+    vector<int> a = {2, 2, 4, 4, 7, 8, 10};
+    unordered_set<int> s;
+    int idx = 0;
 
-    while (right < n)
+    for (int i = 0; i < a.size(); i++)
     {
-        if (arr[right] != arr[left])
+        // find() returns end() iteratorif element is not found
+        // here if element is not found then we we insert that element in set
+        // and and update unique element to our index and increment that index
+        if (s.find(a[i]) == s.end())
         {
-            left++;
-            arr[left] = arr[right];
+            s.insert(a[i]);
+            a[idx] = a[i];
+            idx++;
         }
-        right++;
     }
 
-    for (int i = 0; i < n; i++)
+    for (int x : a)
     {
-        cout << arr[i] << endl;
+        cout << x << " ";
     }
 
     return 0;
 }
 
-// Instead of using a set to store the unique elements, we can implement a two pointer strategy to optimize the space. Since the array is sorted, we know that all the duplicate values will be adjacent to each other.
-// Begin at the first position, which will always be part of the final unique list.
-// Move through the list one item at a time, comparing the current item with the most recently kept unique item.
-// If the current item is the same as the last kept one, skip it because it’s a duplicate.
-// If it’s different, place it right after the last kept unique item to keep all unique values grouped at the front.
-// Continue until every element in the list has been checked. The first part of the list now contains all the unique values in their original order, and the rest can be ignored.
+// Start with idx = 1 (idx is going to hold the index of the next distinct item. Since there is nothing before the first item, we consider it as the first distinct item and begin idx with 1.
+// Loop through the array for i = 0 to n-1.
+// At each index i, if arr[i] is different from arr[i-1], assign arr[idx] = arr[i] and increment idx.
+// After the loop, arr[] contains the unique elements in the first idx positions.
+
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+using namespace std;
+
+int main()
+{
+    vector<int> a = {2, 2, 4, 4, 7, 8, 10};
+    unordered_set<int> s;
+    int idx = 1;
+
+    for (int i = 1; i < a.size(); i++)
+    {
+        if (a[i - 1] != a[i])
+        {
+            a[idx] = a[i];
+            idx++;
+        }
+    }
+
+    for (int x : a)
+    {
+        cout << x << " ";
+    }
+
+    return 0;
+}
