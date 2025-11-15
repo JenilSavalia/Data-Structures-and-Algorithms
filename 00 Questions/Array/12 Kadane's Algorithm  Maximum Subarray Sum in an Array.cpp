@@ -75,7 +75,7 @@ public:
             if (currentSum < 0)
             {
                 currentSum = 0;
-                L = R ; 
+                L = R;
             }
         }
 
