@@ -21,6 +21,7 @@ int main()
         {
             maxSum = max(sum, maxSum);
             sum = sum - a[j];
+            j++;
         }
         i++;
     }
