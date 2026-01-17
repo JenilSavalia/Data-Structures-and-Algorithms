@@ -37,7 +37,7 @@ int allocateBooks(vector<int> &arr, int maxPages)
         else
         {
             studentCount++;
-            currStudentPages += arr[i];
+            currStudentPages = arr[i];
         }
     }
 
