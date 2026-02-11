@@ -1,0 +1,18 @@
+
+
+stack which keeps its emelemts in specific order either 
+1. increasing
+2. decreasing
+
+
+Monotonic increasing stack
+
+-> new element pushed is larger then each element in stack
+-> it is increasing from bottom to top
+-> used to find "Next Smaller Element" , "Prev Smaller Element"
+
+Monotonic decreasing stack
+
+-> new element pushed is smaller then each emement in stack
+-> it is decreasing from bottom to top
+-> used to find "Next Greater emelemt" , "Prev Greater Element"
