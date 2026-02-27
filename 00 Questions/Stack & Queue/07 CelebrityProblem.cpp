@@ -63,3 +63,60 @@ int main()
 
     return 0;
 }
+
+// Optimal Approach
+
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+
+    vector<vector<int>> M = {
+        {0, 1, 1, 0},
+        {0, 0, 0, 0},
+        {1, 1, 0, 0},
+        {0, 1, 1, 0}};
+
+    int candidate = 0;
+
+    for (int i = 1; i < M.size(); i++)
+    {
+        if (M[candidate][i] == 1)
+        {
+            // candidate knows i → candidate can't be celebrity
+            candidate = i;
+        }
+    }
+
+    // Step 2: Verify candidate
+    bool allZeros = true;
+    bool allKnow = true;
+
+    for (int i = 0; i < M.size(); i++)
+    {
+        if (i == candidate)
+            continue;
+
+        // If candidate knows someone or someone doesn't know the candidate
+        if (M[candidate][i] == 1 || M[i][candidate] == 0)
+        {
+            allZeros = false;
+            allKnow = false;
+            break;
+        }
+    }
+
+    if (allZeros && allKnow)
+    {
+        cout << "Celebrity Person: " << candidate;
+    }
+    else
+    {
+        cout << "No Celebrity";
+    }
+
+    return 0;
+}
